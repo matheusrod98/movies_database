@@ -12,6 +12,6 @@ typedef struct Movie {
     double rate;
 } Movie;
 
-ostream &operator<<(ostream, Movie);
+ostream &operator<<(ostream &out, Movie &movie);
 
 #endif /* _MOVIE */

@@ -1,23 +1,41 @@
 #include <ostream>
 #include <vector>
 #include <string>
+#include <fstream>
+
+#include "json.hpp"
 
 #include "catalog.hpp"
 #include "movie.hpp"
 
 using namespace std;
 
+Catalog::Catalog() {
+    ifstream db(MOVIES_DB);
+    nlohmann::json jsonMovies = nlohmann::json::parse(db);
+    
+    for (unsigned int movieIndex = 0; movieIndex < jsonMovies.size(); movieIndex++) {
+        Movie movie {
+            jsonMovies.at(movieIndex)["movieName"].get<string>(),
+            jsonMovies.at(movieIndex)["producerName"].get<string>(),
+            jsonMovies.at(movieIndex)["rate"].get<double>(),
+        };
+        Catalog::movies.push_back(movie);
+    }
+}
+
 vector<Movie> Catalog::getMovies() {
     return movies;
 }
 
-ostream &operator<<(ostream &out, Catalog &catalog) {
-    for (unsigned int movie = 0; movie < catalog.getMovies().size(); movie++) {
-        out << "Movie name: " << catalog.getMovies().at(movie).movieName << endl 
-	    << "Producer: " << catalog.getMovies().at(movie).producerName << endl
-	    << "Rate: " << catalog.getMovies().at(movie).rate << endl;
+ostream &operator<<(ostream &out) {
+    vector<Movie> movies = catalog.getMovies();
+    for (unsigned int movie = 0; movie < movies.size(); movie++) {
+        out << "Movie name: " << movies.at(movie).movieName << endl;
+	    out << "Producer: " << movies.at(movie).producerName << endl;
+	    out << "Rate: " << movies.at(movie).rate << endl;
+        out << endl;
     }
-
     return out;
 }
 

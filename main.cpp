@@ -10,15 +10,15 @@ using namespace std;
 
 int main() {
 
-    ifstream db("db.json");
-    nlohmann::json data = nlohmann::json::parse(db);
-     
-    cout << data << endl;
-
     Catalog catalog;
+    
+    cout << catalog;
 
-    cout << catalog("The Godfather") << endl; 
+    // vector<Movie> movies = catalog.getMovies();
+    // for (unsigned int movieIndex = 0; movieIndex < movies.size(); movieIndex++) {
+    //     cout << movies.at(movieIndex) << endl;
+    // }
+
 
     return 0;
 }
-
