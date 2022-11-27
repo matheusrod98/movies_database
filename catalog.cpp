@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <iostream>
 #include <ostream>
 #include <vector>
 #include <string>
@@ -39,11 +41,18 @@ ostream &operator<<(ostream &out, Catalog &catalog) {
     return out;
 }
 
-unsigned int Catalog::operator()(string movieName) {
+int Catalog::operator()(string inputMovieName) {
     vector<Movie> movies = Catalog::getMovies();
+
     for (unsigned int movieIndex = 0; movieIndex < movies.size(); movieIndex++) {
-        if (Catalog::getMovies().at(movieIndex).movieName == movieName)
+
+        string catalogMovieName = Catalog::getMovies().at(movieIndex).movieName;
+
+        transform(catalogMovieName.begin(), catalogMovieName.end(), catalogMovieName.begin(), ::toupper);
+        transform(inputMovieName.begin(), inputMovieName.end(), inputMovieName.begin(), ::toupper);
+        if (catalogMovieName == inputMovieName) {
             return movieIndex;
+        }
     }
 
     return -1;

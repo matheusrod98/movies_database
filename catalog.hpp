@@ -23,7 +23,7 @@ class Catalog {
     public:
 	Catalog();
         vector<Movie> getMovies();
-	unsigned int operator()(string movieName);
+	int operator()(string movieName);
 };
 
 #endif /* _CATALOG_ */
