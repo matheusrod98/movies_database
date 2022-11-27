@@ -1,0 +1,5 @@
+!*.json
+!*.c*
+!*.h*
+!Makefile
+!makefile
