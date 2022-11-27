@@ -13,6 +13,8 @@
 using namespace std;
 
 class Catalog {
+    friend ostream &operator<<(ostream &out, Catalog &catalog);
+
     private:
         const int maxMovies = 256;
         vector<Movie> movies;
@@ -22,7 +24,6 @@ class Catalog {
 	Catalog();
         vector<Movie> getMovies();
 	unsigned int operator()(string movieName);
-	ostream &operator<<(Catalog &catalog);
 };
 
 #endif /* _CATALOG_ */

@@ -28,10 +28,10 @@ vector<Movie> Catalog::getMovies() {
     return movies;
 }
 
-ostream &operator<<(ostream &out) {
+ostream &operator<<(ostream &out, Catalog &catalog) {
     vector<Movie> movies = catalog.getMovies();
     for (unsigned int movie = 0; movie < movies.size(); movie++) {
-        out << "Movie name: " << movies.at(movie).movieName << endl;
+        out << "Name: " << movies.at(movie).movieName << endl;
 	    out << "Producer: " << movies.at(movie).producerName << endl;
 	    out << "Rate: " << movies.at(movie).rate << endl;
         out << endl;

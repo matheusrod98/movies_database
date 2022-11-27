@@ -12,7 +12,7 @@ int main() {
 
     Catalog catalog;
     
-    cout << catalog;
+    cout << catalog << endl;
 
     // vector<Movie> movies = catalog.getMovies();
     // for (unsigned int movieIndex = 0; movieIndex < movies.size(); movieIndex++) {
