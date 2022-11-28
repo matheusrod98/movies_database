@@ -5,13 +5,13 @@
         "rate": 0.9
     },
     {
-        "movieName": "The Godfather",
-        "producerName": "Francis Ford Coppola",
-        "rate": 0.95
-    },
-    {
         "movieName": "Citizen Kane",
         "producerName": "Orson Welles",
         "rate": 0.85
+    },
+    {
+        "movieName": "The Godfather",
+        "producerName": "Francis Ford Coppola",
+        "rate": 0.95
     }
 ]
