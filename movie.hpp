@@ -2,7 +2,7 @@
 #define _MOVIE_
 
 #include <string>
-#include <ostream>
+#include <iostream>
 
 using namespace std;
 
@@ -13,5 +13,6 @@ typedef struct Movie {
 } Movie;
 
 ostream &operator<<(ostream &out, Movie &movie);
+istream &operator>>(istream &in, Movie &movie);
 
 #endif /* _MOVIE */

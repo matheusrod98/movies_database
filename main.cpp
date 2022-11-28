@@ -16,6 +16,8 @@ int main() {
 
     cout << catalog("citizen kane") << endl;
 
+    Movie movie;
+    cin >> movie;
 
     return 0;
 }
