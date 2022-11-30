@@ -32,11 +32,18 @@ vector<Movie> Catalog::getMovies() {
 
 ostream &operator<<(ostream &out, Catalog &catalog) {
     vector<Movie> movies = catalog.getMovies();
+    string rate;
     for (unsigned int movie = 0; movie < movies.size(); movie++) {
         out << "Name: " << movies.at(movie).movieName << endl;
 	    out << "Producer: " << movies.at(movie).producerName << endl;
-	    out << "Rate: " << movies.at(movie).rate << endl;
-        out << endl;
+        do {
+            out << "Rate: " << rate;
+            if (!isNumber(rate))
+                cout << "Please, enter a valid number for the movie rate." << endl;
+            else
+                movies.at(movie).rate = stod(rate);
+            
+        } while (!isNumber(rate)); // Code this isNumber function to check if a string is a number
     }
     return out;
 }
