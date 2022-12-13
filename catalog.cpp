@@ -26,24 +26,28 @@ Catalog::Catalog() {
     }
 }
 
-vector<Movie> Catalog::getMovies() {
+vector<Movie> &Catalog::getMovies() {
     return movies;
 }
 
 ostream &operator<<(ostream &out, Catalog &catalog) {
     vector<Movie> movies = catalog.getMovies();
     string rate;
+
     for (unsigned int movie = 0; movie < movies.size(); movie++) {
         out << "Name: " << movies.at(movie).movieName << endl;
-	    out << "Producer: " << movies.at(movie).producerName << endl;
-        do {
-            out << "Rate: " << rate;
-            if (!isNumber(rate))
-                cout << "Please, enter a valid number for the movie rate." << endl;
-            else
-                movies.at(movie).rate = stod(rate);
-            
-        } while (!isNumber(rate)); // Code this isNumber function to check if a string is a number
+   	out << "Producer: " << movies.at(movie).producerName << endl;
+	out << "Rate: " << movies.at(movie).rate << endl;
+
+        // do {
+        //     out << "Rate: " << rate;
+        //     if (!isNumber(rate)) // Code this isNumber function to check if a string is a number
+        //         cout << "Please, enter a valid number for the movie rate." << endl;
+        //     else
+        //         movies.at(movie).rate = stod(rate);
+        //     
+        // } while (!isNumber(rate));
+
     }
     return out;
 }
@@ -63,4 +67,26 @@ int Catalog::operator()(string inputMovieName) {
     }
 
     return -1;
+}
+
+int Catalog::operator()(string inputMovieName, string attributeName, string attributeNewValue) {
+
+    vector<Movie> movies = Catalog::getMovies();
+
+    int movieIndex = Catalog::operator()(inputMovieName);
+    if (movieIndex < 0)
+        return -1;
+
+    if (attributeName == "movieName")
+        Catalog::getMovies().at(movieIndex).movieName = attributeNewValue; 
+    else if (attributeName == "producerName")
+        Catalog::getMovies().at(movieIndex).producerName = attributeNewValue; 
+    else if (attributeName == "rate")
+        Catalog::getMovies().at(movieIndex).rate = stoi(attributeNewValue);
+    else
+        return -1;
+
+    cout << movies.at(movieIndex) << endl;
+
+    return movieIndex;
 }

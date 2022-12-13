@@ -18,12 +18,13 @@ class Catalog {
     private:
         const int maxMovies = 256;
         vector<Movie> movies;
-	nlohmann::json data;
+        nlohmann::json data;
     
     public:
-	Catalog();
-        vector<Movie> getMovies();
-	int operator()(string movieName);
+        Catalog();
+        vector<Movie> &getMovies();
+        int operator()(string movieName, string attributeName, string attributeNewValue);
+        int operator()(string movieName);
 };
 
 #endif /* _CATALOG_ */
